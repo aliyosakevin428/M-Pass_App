@@ -9,6 +9,8 @@ use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\JurusanController;
+
 
 
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
@@ -32,6 +34,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('guru/bulk', [GuruController::class, 'bulkUpdate'])->name('guru.bulk.update');
     Route::delete('guru/bulk', [GuruController::class, 'bulkDelete'])->name('guru.bulk.destroy');
     Route::apiResource('guru', GuruController::class);
+    Route::put('jurusan/bulk', [JurusanController::class, 'bulkUpdate'])->name('jurusan.bulk.update');
+    Route::delete('jurusan/bulk', [JurusanController::class, 'bulkDelete'])->name('jurusan.bulk.destroy');
+    Route::get('jurusan/archived', [JurusanController::class, 'archived'])->name('jurusan.archived');
+    Route::put('jurusan/{jurusan}/restore', [JurusanController::class, 'restore'])->name('jurusan.restore');
+    Route::delete('jurusan/{jurusan}/force-delete', [JurusanController::class, 'forceDelete'])->name('jurusan.force-delete');
+    Route::apiResource('jurusan', JurusanController::class);
 });
 
 require __DIR__.'/settings.php';

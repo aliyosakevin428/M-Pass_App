@@ -1,0 +1,161 @@
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import AppLayout from '@/layouts/app-layout';
+import { SharedData } from '@/types';
+import { Jurusan } from '@/types/jurusan';
+import { Link, usePage } from '@inertiajs/react';
+import { Edit, Filter, Folder, FolderArchive, Image, Plus, Trash2 } from 'lucide-react';
+import { FC, useState } from 'react';
+import JurusanDeleteDialog from './components/jurusan-delete-dialog';
+import JurusanFilterSheet from './components/jurusan-filter-sheet';
+import JurusanFormSheet from './components/jurusan-form-sheet';
+import JurusanBulkEditSheet from './components/jurusan-bulk-edit-sheet';
+import JurusanBulkDeleteDialog from './components/jurusan-bulk-delete-dialog';
+import JurusanUploadMediaSheet from './components/jurusan-upload-sheet';
+
+type Props = {
+  jurusans: Jurusan[];
+  query: { [key: string]: string };
+};
+
+const JurusanList: FC<Props> = ({ jurusans, query }) => {
+  const [ids, setIds] = useState<number[]>([]);
+  const [cari, setCari] = useState('');
+
+  const { permissions } = usePage<SharedData>().props;
+
+  return (
+    <AppLayout
+      title="Jurusans"
+      description="Manage your jurusans"
+      actions={
+        <>
+          {permissions?.canAdd && (
+            <JurusanFormSheet purpose="create">
+              <Button>
+                <Plus />
+                Create new jurusan
+              </Button>
+            </JurusanFormSheet>
+          )}
+          <Button variant={'destructive'} size={'icon'} asChild>
+    <Link href={route('jurusan.archived')}>
+        <FolderArchive />
+    </Link>
+</Button>
+        </>
+      }
+    >
+      <div className="flex gap-2">
+        <Input placeholder="Search jurusans..." value={cari} onChange={(e) => setCari(e.target.value)} />
+        <JurusanFilterSheet query={query}>
+          <Button>
+            <Filter />
+            Filter data
+            {Object.values(query).filter((val) => val && val !== '').length > 0 && (
+              <Badge variant="secondary">{Object.values(query).filter((val) => val && val !== '').length}</Badge>
+            )}
+          </Button>
+        </JurusanFilterSheet>
+        {ids.length > 0 && (
+          <>
+            <Button variant={'ghost'} disabled>
+              {ids.length} item selected
+            </Button>
+            <JurusanBulkEditSheet jurusanIds={ids}>
+              <Button>
+                <Edit /> Edit selected
+              </Button>
+            </JurusanBulkEditSheet>
+            <JurusanBulkDeleteDialog jurusanIds={ids}>
+              <Button variant={'destructive'}>
+                <Trash2 /> Delete selected
+              </Button>
+            </JurusanBulkDeleteDialog>
+          </>
+        )}
+      </div>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>
+              <Button variant={'ghost'} size={'icon'} asChild>
+                <Label>
+                  <Checkbox
+                    checked={ids.length === jurusans.length}
+                    onCheckedChange={(checked) => {
+                      if (checked) {
+                        setIds(jurusans.map((jurusan) => jurusan.id));
+                      } else {
+                        setIds([]);
+                      }
+                    }}
+                  />
+                </Label>
+              </Button>
+            </TableHead>
+            <TableHead>Name</TableHead>
+            <TableHead>Actions</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {jurusans
+            .filter((jurusan) => JSON.stringify(jurusan).toLowerCase().includes(cari.toLowerCase()))
+            .map((jurusan) => (
+              <TableRow key={jurusan.id}>
+                <TableCell>
+                  <Button variant={'ghost'} size={'icon'} asChild>
+                    <Label>
+                      <Checkbox
+                        checked={ids.includes(jurusan.id)}
+                        onCheckedChange={(checked) => {
+                          if (checked) {
+                            setIds([...ids, jurusan.id]);
+                          } else {
+                            setIds(ids.filter((id) => id !== jurusan.id));
+                          }
+                        }}
+                      />
+                    </Label>
+                  </Button>
+                </TableCell>
+                <TableCell>{ jurusan.name }</TableCell>
+                <TableCell>
+                  {permissions?.canShow && (
+                    <Button variant={'ghost'} size={'icon'}>
+                      <Link href={route('jurusan.show', jurusan.id)}>
+                        <Folder />
+                      </Link>
+                    </Button>
+                  )}
+                  {permissions?.canUpdate && (
+                    <>
+                      
+                      <JurusanFormSheet purpose="edit" jurusan={jurusan}>
+                        <Button variant={'ghost'} size={'icon'}>
+                          <Edit />
+                        </Button>
+                      </JurusanFormSheet>
+                    </>
+                  )}
+                  {permissions?.canDelete && (
+                    <JurusanDeleteDialog jurusan={jurusan}>
+                      <Button variant={'ghost'} size={'icon'}>
+                        <Trash2 />
+                      </Button>
+                    </JurusanDeleteDialog>
+                  )}
+                </TableCell>
+              </TableRow>
+            ))}
+        </TableBody>
+      </Table>
+    </AppLayout>
+  );
+};
+
+export default JurusanList;
