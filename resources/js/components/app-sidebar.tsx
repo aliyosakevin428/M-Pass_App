@@ -18,6 +18,11 @@ const mainNavItems: NavItem[] = [
     href: route('documentation'),
     icon: BookOpen,
   },
+  {
+    title: 'Guru',
+    href: route('guru.index'),
+    icon: Users,
+  },
 ];
 
 const footerNavItems: NavItem[] = [];
