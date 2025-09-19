@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\KelasController;
+
 
 
 
@@ -40,6 +42,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('jurusan/{jurusan}/restore', [JurusanController::class, 'restore'])->name('jurusan.restore');
     Route::delete('jurusan/{jurusan}/force-delete', [JurusanController::class, 'forceDelete'])->name('jurusan.force-delete');
     Route::apiResource('jurusan', JurusanController::class);
+    Route::put('kelas/bulk', [KelasController::class, 'bulkUpdate'])->name('kelas.bulk.update');
+    Route::delete('kelas/bulk', [KelasController::class, 'bulkDelete'])->name('kelas.bulk.destroy');
+    Route::get('kelas/archived', [KelasController::class, 'archived'])->name('kelas.archived');
+    Route::put('kelas/{kelas}/restore', [KelasController::class, 'restore'])->name('kelas.restore');
+    Route::delete('kelas/{kelas}/force-delete', [KelasController::class, 'forceDelete'])->name('kelas.force-delete');
+    Route::apiResource('kelas', KelasController::class);
 });
 
 require __DIR__.'/settings.php';
