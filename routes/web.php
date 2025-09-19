@@ -11,6 +11,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\SiswaController;
+
 
 
 
@@ -48,6 +50,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('kelas/{kelas}/restore', [KelasController::class, 'restore'])->name('kelas.restore');
     Route::delete('kelas/{kelas}/force-delete', [KelasController::class, 'forceDelete'])->name('kelas.force-delete');
     Route::apiResource('kelas', KelasController::class);
+    Route::put('siswa/bulk', [SiswaController::class, 'bulkUpdate'])->name('siswa.bulk.update');
+    Route::delete('siswa/bulk', [SiswaController::class, 'bulkDelete'])->name('siswa.bulk.destroy');
+    Route::get('siswa/archived', [SiswaController::class, 'archived'])->name('siswa.archived');
+    Route::put('siswa/{siswa}/restore', [SiswaController::class, 'restore'])->name('siswa.restore');
+    Route::delete('siswa/{siswa}/force-delete', [SiswaController::class, 'forceDelete'])->name('siswa.force-delete');
+    Route::post('siswa/{siswa}/upload-media', [SiswaController::class, 'uploadMedia'])->name('siswa.upload-media');
+    Route::apiResource('siswa', SiswaController::class);
 });
 
 require __DIR__.'/settings.php';
