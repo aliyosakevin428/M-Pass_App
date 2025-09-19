@@ -12,6 +12,8 @@ use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\OrangtuaController;
+
 
 
 
@@ -57,6 +59,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('siswa/{siswa}/force-delete', [SiswaController::class, 'forceDelete'])->name('siswa.force-delete');
     Route::post('siswa/{siswa}/upload-media', [SiswaController::class, 'uploadMedia'])->name('siswa.upload-media');
     Route::apiResource('siswa', SiswaController::class);
+    Route::put('orangtua/bulk', [OrangtuaController::class, 'bulkUpdate'])->name('orangtua.bulk.update');
+    Route::delete('orangtua/bulk', [OrangtuaController::class, 'bulkDelete'])->name('orangtua.bulk.destroy');
+    Route::apiResource('orangtua', OrangtuaController::class);
 });
 
 require __DIR__.'/settings.php';

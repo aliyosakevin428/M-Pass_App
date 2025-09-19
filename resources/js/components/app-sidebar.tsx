@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { BookCopy, BookOpen, BookUser, Database, KeySquare, LayoutGrid, School2, Users } from 'lucide-react';
+import { BookCopy, BookOpen, BookUser, Database, KeySquare, LayoutGrid, School2, ScrollText, Users } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -17,26 +17,6 @@ const mainNavItems: NavItem[] = [
     title: 'Documentation',
     href: route('documentation'),
     icon: BookOpen,
-  },
-  {
-    title: 'Guru',
-    href: route('guru.index'),
-    icon: Users,
-  },
-  {
-    title: 'Jurusan',
-    href: route('jurusan.index'),
-    icon: BookCopy,
-  },
-  {
-    title: 'Daftar Kelas',
-    href: route('kelas.index'),
-    icon: School2,
-  },
-  {
-    title: 'Daftar Siswa',
-    href: route('siswa.index'),
-    icon: BookUser,
   },
 ];
 
@@ -61,6 +41,36 @@ export function AppSidebar() {
 
       <SidebarContent className="space-y-4">
         <NavMain items={mainNavItems} label="Dashboard" />
+        <NavMain
+          items={[
+            {
+              title: 'Guru',
+              href: route('guru.index'),
+              icon: Users,
+            },
+            {
+              title: 'Jurusan',
+              href: route('jurusan.index'),
+              icon: BookCopy,
+            },
+            {
+              title: 'Daftar Kelas',
+              href: route('kelas.index'),
+              icon: School2,
+            },
+            {
+              title: 'Daftar Siswa',
+              href: route('siswa.index'),
+              icon: BookUser,
+            },
+            {
+              title: 'Daftar Orangtua',
+              href: route('orangtua.index'),
+              icon: ScrollText,
+            },
+          ]}
+          label="Data Master"
+        />
         <NavMain
           items={[
             {
