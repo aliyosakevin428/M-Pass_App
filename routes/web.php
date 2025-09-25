@@ -13,6 +13,8 @@ use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\OrangtuaController;
+use App\Http\Controllers\AbsensiController;
+
 
 
 
@@ -62,6 +64,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('orangtua/bulk', [OrangtuaController::class, 'bulkUpdate'])->name('orangtua.bulk.update');
     Route::delete('orangtua/bulk', [OrangtuaController::class, 'bulkDelete'])->name('orangtua.bulk.destroy');
     Route::apiResource('orangtua', OrangtuaController::class);
+    Route::put('absensi/bulk', [AbsensiController::class, 'bulkUpdate'])->name('absensi.bulk.update');
+    Route::delete('absensi/bulk', [AbsensiController::class, 'bulkDelete'])->name('absensi.bulk.destroy');
+    Route::get('absensi/archived', [AbsensiController::class, 'archived'])->name('absensi.archived');
+    Route::put('absensi/{absensi}/restore', [AbsensiController::class, 'restore'])->name('absensi.restore');
+    Route::delete('absensi/{absensi}/force-delete', [AbsensiController::class, 'forceDelete'])->name('absensi.force-delete');
+    Route::post('absensi/{absensi}/upload-media', [AbsensiController::class, 'uploadMedia'])->name('absensi.upload-media');
+    Route::apiResource('absensi', AbsensiController::class);
 });
 
 require __DIR__.'/settings.php';

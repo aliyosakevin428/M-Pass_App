@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { BookCopy, BookOpen, BookUser, Database, KeySquare, LayoutGrid, School2, ScrollText, Users } from 'lucide-react';
+import { BookCheck, BookCopy, BookOpen, BookUser, Database, KeySquare, LayoutGrid, School2, ScrollText, Users } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -67,6 +67,11 @@ export function AppSidebar() {
               title: 'Daftar Orangtua',
               href: route('orangtua.index'),
               icon: ScrollText,
+            },
+            {
+              title: 'Absensi',
+              href: route('absensi.index'),
+              icon: BookCheck,
             },
           ]}
           label="Data Master"
