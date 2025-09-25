@@ -21,10 +21,10 @@ type Props = PropsWithChildren & {
 const AbsensiFormSheet: FC<Props> = ({ children, absensi, purpose }) => {
   const [open, setOpen] = useState(false);
 
-  const { siswaList = [] } = usePage<{ siswa: Siswa[] }>().props;
+  const { siswa = [] } = usePage<{ siswa: Siswa[] }>().props;
 
   const { data, setData, put, post, reset, processing } = useForm({
-    siswa_id: absensi?.siswa?.name ?? '',
+    siswa_id: absensi?.siswa_id?.toString() ?? '',
   });
 
   const handleSubmit = () => {
@@ -72,15 +72,15 @@ const AbsensiFormSheet: FC<Props> = ({ children, absensi, purpose }) => {
                   <SelectValue placeholder="Pilih Siswa" />
                 </SelectTrigger>
                 <SelectContent>
-                  {siswaList && Array.isArray(siswaList) ? (
-                    siswaList.map((siswa) => (
-                      <SelectItem key={siswa.id} value={siswa.id.toString()}>
-                        {siswa.name}
+                  {siswa && Array.isArray(siswa) ? (
+                    siswa.map((siswas) => (
+                      <SelectItem key={siswas.id} value={siswas.id.toString()}>
+                        {siswas.name}
                       </SelectItem>
                     ))
                   ) : (
                     <SelectItem value="none" disabled>
-                      {!siswaList ? 'Loading...' : 'Tidak ada data siswa'}
+                      {!siswa ? 'Loading...' : 'Tidak ada data siswa'}
                     </SelectItem>
                   )}
                 </SelectContent>

@@ -14,11 +14,11 @@ class UpdateAbsensiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'siswa_id' => 'nullable',
-            'kelas_id' => 'nullable',
-            'tanggal' => 'nullable',
-            'status' => 'nullable',
-            'keterangan' => 'nullable',
+            'siswa_id' => 'nullable|exists:siswas,id',
+            'kelas_id' => 'nullable|exists:kelas,id',
+            'tanggal' => 'nullable|date',
+            'status' => 'nullable|in:hadir,sakit,izin,alpha,terlambat',
+            'keterangan' => 'nullable|string',
         ];
     }
 }

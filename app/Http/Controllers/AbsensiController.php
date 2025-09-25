@@ -31,7 +31,7 @@ class AbsensiController extends Controller
 
         return Inertia::render('absensi/index', [
             'absensis' => $data->get(),
-            'siswas' => Siswa::get(),
+            'siswa' => Siswa::get(),
             'kelas' => Kelas::get(),
             'query' => $request->input(),
             'permissions' => [
