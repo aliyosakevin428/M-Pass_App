@@ -1,8 +1,6 @@
-import { Siswa } from "./siswa";
-import { Kelas } from "./kelas";
 import { Media } from '.';
-
-
+import { Kelas } from './kelas';
+import { Siswa } from './siswa';
 
 export type Absensi = {
   id: number;

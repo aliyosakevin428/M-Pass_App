@@ -1,12 +1,14 @@
 import FormControl from '@/components/form-control';
 import SubmitButton from '@/components/submit-button';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { capitalizeWords, em } from '@/lib/utils';
 import { FormPurpose } from '@/types';
 import { Absensi } from '@/types/absensi';
+import { Kelas } from '@/types/kelas';
 import { Siswa } from '@/types/siswa';
 import { useForm, usePage } from '@inertiajs/react';
 import { X } from 'lucide-react';
@@ -21,10 +23,14 @@ type Props = PropsWithChildren & {
 const AbsensiFormSheet: FC<Props> = ({ children, absensi, purpose }) => {
   const [open, setOpen] = useState(false);
 
-  const { siswa = [] } = usePage<{ siswa: Siswa[] }>().props;
+  const { siswa = [], kelas = [] } = usePage<{ siswa: Siswa[]; kelas: Kelas[] }>().props;
 
   const { data, setData, put, post, reset, processing } = useForm({
     siswa_id: absensi?.siswa_id?.toString() ?? '',
+    kelas_id: absensi?.kelas_id?.toString() ?? '',
+    tanggal: absensi?.tanggal ?? '',
+    status: absensi?.status ?? '',
+    keterangan: absensi?.keterangan ?? '',
   });
 
   const handleSubmit = () => {
@@ -85,6 +91,45 @@ const AbsensiFormSheet: FC<Props> = ({ children, absensi, purpose }) => {
                   )}
                 </SelectContent>
               </Select>
+            </FormControl>
+            <FormControl label="Kelas">
+              <Select value={data.kelas_id?.toString() || ''} onValueChange={(value) => setData('kelas_id', value)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Pilih Kelas" />
+                </SelectTrigger>
+                <SelectContent>
+                  {kelas && Array.isArray(kelas) ? (
+                    kelas.map((kelas) => (
+                      <SelectItem key={kelas.id} value={kelas.id.toString()}>
+                        {kelas.name}
+                      </SelectItem>
+                    ))
+                  ) : (
+                    <SelectItem value="none" disabled>
+                      {!kelas ? 'Loading...' : 'Tidak ada data kelas'}
+                    </SelectItem>
+                  )}
+                </SelectContent>
+              </Select>
+            </FormControl>
+            <FormControl label="Tanggal">
+              <Input type="date" value={data.tanggal} onChange={(e) => setData('tanggal', e.target.value)} />
+            </FormControl>
+            <FormControl label="Status">
+              <Select value={data.status} onValueChange={(value) => setData('status', value)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Pilih Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="hadir">hadir</SelectItem>
+                  <SelectItem value="izin">izin</SelectItem>
+                  <SelectItem value="sakit">sakit</SelectItem>
+                  <SelectItem value="alpha">alpha</SelectItem>
+                </SelectContent>
+              </Select>
+            </FormControl>
+            <FormControl label="Keterangan">
+              <Input value={data.keterangan} onChange={(e) => setData('keterangan', e.target.value)} />
             </FormControl>
           </form>
         </ScrollArea>
