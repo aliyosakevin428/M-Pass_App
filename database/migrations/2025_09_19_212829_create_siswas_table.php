@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('no_telpon')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('alamat')->nullable();
+            $table->string('foto')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
