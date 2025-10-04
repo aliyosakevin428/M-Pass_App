@@ -61,7 +61,7 @@ class KelasController extends Controller
         $this->pass("show kelas");
 
         return Inertia::render('kelas/show', [
-            'kelas' => $kelas,
+            'kelas' => Kelas::with(['guru', 'jurusan'])->get(),
             'permissions' => [
                 'canUpdate' => $this->user->can("update kelas"),
                 'canDelete' => $this->user->can("delete kelas"),

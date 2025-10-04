@@ -8,14 +8,13 @@ import AppLayout from '@/layouts/app-layout';
 import { SharedData } from '@/types';
 import { Kelas } from '@/types/kelas';
 import { Link, usePage } from '@inertiajs/react';
-import { Edit, Filter, Folder, FolderArchive, Image, Plus, Trash2 } from 'lucide-react';
+import { Edit, Filter, Folder, FolderArchive, Plus, Trash2 } from 'lucide-react';
 import { FC, useState } from 'react';
+import KelasBulkDeleteDialog from './components/kelas-bulk-delete-dialog';
+import KelasBulkEditSheet from './components/kelas-bulk-edit-sheet';
 import KelasDeleteDialog from './components/kelas-delete-dialog';
 import KelasFilterSheet from './components/kelas-filter-sheet';
 import KelasFormSheet from './components/kelas-form-sheet';
-import KelasBulkEditSheet from './components/kelas-bulk-edit-sheet';
-import KelasBulkDeleteDialog from './components/kelas-bulk-delete-dialog';
-import KelasUploadMediaSheet from './components/kelas-upload-sheet';
 
 type Props = {
   kelas: Kelas[];
@@ -43,10 +42,10 @@ const KelasList: FC<Props> = ({ kelas, query }) => {
             </KelasFormSheet>
           )}
           <Button variant={'destructive'} size={'icon'} asChild>
-    <Link href={route('kelas.archived')}>
-        <FolderArchive />
-    </Link>
-</Button>
+            <Link href={route('kelas.archived')}>
+              <FolderArchive />
+            </Link>
+          </Button>
         </>
       }
     >
@@ -125,9 +124,9 @@ const KelasList: FC<Props> = ({ kelas, query }) => {
                     </Label>
                   </Button>
                 </TableCell>
-                <TableCell>{ kelas.name }</TableCell>
-                <TableCell>{ kelas.guru.name }</TableCell>
-                <TableCell>{ kelas.jurusan?.name }</TableCell>
+                <TableCell>{kelas.name}</TableCell>
+                <TableCell>{kelas.guru.name}</TableCell>
+                <TableCell>{kelas.jurusan.name}</TableCell>
                 <TableCell>
                   {permissions?.canShow && (
                     <Button variant={'ghost'} size={'icon'}>
@@ -138,7 +137,6 @@ const KelasList: FC<Props> = ({ kelas, query }) => {
                   )}
                   {permissions?.canUpdate && (
                     <>
-
                       <KelasFormSheet purpose="edit" kelas={kelas}>
                         <Button variant={'ghost'} size={'icon'}>
                           <Edit />

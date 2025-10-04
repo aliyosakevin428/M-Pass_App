@@ -33,12 +33,12 @@ class Kelas extends Model
 
     public function guru()
     {
-        return $this->belongsTo(Guru::class);
+        return $this->belongsTo(Guru::class, 'guru_id');
     }
 
     public function jurusan()
     {
-        return $this->belongsTo(Jurusan::class);
+        return $this->belongsTo(Jurusan::class, 'jurusan_id');
     }
 
     public function siswas()

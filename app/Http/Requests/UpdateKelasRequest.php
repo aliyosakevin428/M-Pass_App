@@ -14,9 +14,9 @@ class UpdateKelasRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
+            'name' => 'nullable|string|max:255',
             'guru_id' => 'nullable|exists:gurus,id',
-            'jurusan_id' => 'nullable|exists:jurusans,id',
+            'jurusan_id' => 'required|exists:jurusans,id',
         ];
     }
 }

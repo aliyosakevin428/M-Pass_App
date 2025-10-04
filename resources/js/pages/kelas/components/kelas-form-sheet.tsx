@@ -27,8 +27,8 @@ const KelasFormSheet: FC<Props> = ({ children, kelas, purpose }) => {
 
   const { data, setData, put, post, reset, processing } = useForm({
     name: kelas?.name ?? '',
-    guru_id: kelas?.guru_id ?? '',
-    jurusan_id: kelas?.jurusan_id ?? '',
+    guru_id: kelas?.guru_id ? String(kelas.guru_id) : undefined,
+    jurusan_id: kelas?.jurusan_id ? String(kelas.jurusan_id) : undefined,
   });
 
   const handleSubmit = () => {
@@ -74,7 +74,7 @@ const KelasFormSheet: FC<Props> = ({ children, kelas, purpose }) => {
               <Input type="text" placeholder="Name" value={data.name} onChange={(e) => setData('name', e.target.value)} />
             </FormControl>
             <FormControl label="Guru">
-              <Select value={data.guru_id.toString()} onValueChange={(e) => setData('guru_id', e)}>
+              <Select value={data.guru_id || ''} onValueChange={(e) => setData('guru_id', e)}>
                 <SelectTrigger>
                   <SelectValue placeholder="Pilih guru" />
                 </SelectTrigger>
@@ -88,7 +88,7 @@ const KelasFormSheet: FC<Props> = ({ children, kelas, purpose }) => {
               </Select>
             </FormControl>
             <FormControl label="Jurusan">
-              <Select value={data.jurusan_id.toString()} onValueChange={(e) => setData('jurusan_id', e)}>
+              <Select value={data.jurusan_id || ''} onValueChange={(e) => setData('jurusan_id', e)}>
                 <SelectTrigger>
                   <SelectValue placeholder="Pilih jurusan" />
                 </SelectTrigger>
