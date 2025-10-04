@@ -25,6 +25,7 @@ type Props = {
 const AbsensiList: FC<Props> = ({ absensis, query }) => {
   const [ids, setIds] = useState<number[]>([]);
   const [cari, setCari] = useState('');
+  console.log(absensis);
 
   const { permissions } = usePage<SharedData>().props;
 
@@ -99,7 +100,7 @@ const AbsensiList: FC<Props> = ({ absensis, query }) => {
               </Button>
             </TableHead>
             <TableHead>Name</TableHead>
-            <TableHead>Kelas</TableHead>
+            <TableHead>Kelas dan Jurusan</TableHead>
             <TableHead>Tanggal</TableHead>
             <TableHead>Status</TableHead>
             <TableHead>Keterangan</TableHead>
@@ -128,7 +129,9 @@ const AbsensiList: FC<Props> = ({ absensis, query }) => {
                   </Button>
                 </TableCell>
                 <TableCell>{absensi.siswa?.name}</TableCell>
-                <TableCell>{absensi.kelas?.name}</TableCell>
+                <TableCell>
+                  {absensi.kelas?.name} - {absensi.kelas?.jurusan?.name ?? '-'}{' '}
+                </TableCell>
                 <TableCell>{absensi.tanggal}</TableCell>
                 <TableCell>{absensi.status}</TableCell>
                 <TableCell>{absensi.keterangan}</TableCell>

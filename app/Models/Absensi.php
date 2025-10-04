@@ -56,4 +56,9 @@ class Absensi extends Model implements HasMedia
     {
         return $this->belongsTo(Siswa::class);
     }
+
+    public function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class);
+    }
 }

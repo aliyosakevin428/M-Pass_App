@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateSiswaRequest;
 use App\Http\Requests\BulkUpdateSiswaRequest;
 use App\Http\Requests\BulkDeleteSiswaRequest;
 use App\Models\Kelas;
+use App\Models\Orangtua;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -23,7 +24,7 @@ class SiswaController extends Controller
         $this->pass("index siswa");
 
         $data = Siswa::query()
-            ->with(['media', 'kelas'])
+            ->with(['media', 'kelas', 'orangtua'])
             ->when($request->name, function($q, $v){
                 $q->where('name', $v);
             });
@@ -31,6 +32,7 @@ class SiswaController extends Controller
         return Inertia::render('siswa/index', [
             'siswas' => $data->get(),
             'kelas' => Kelas::get(),
+            'orangtuas' => Orangtua::get(),
             'query' => $request->input(),
             'permissions' => [
                 'canAdd' => $this->user->can("create siswa"),

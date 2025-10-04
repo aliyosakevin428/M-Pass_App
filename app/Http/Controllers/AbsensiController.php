@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateAbsensiRequest;
 use App\Http\Requests\BulkUpdateAbsensiRequest;
 use App\Http\Requests\BulkDeleteAbsensiRequest;
 use App\Models\Absensi;
+use App\Models\Jurusan;
 use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class AbsensiController extends Controller
         $this->pass("index absensi");
 
         $data = Absensi::query()
-            ->with(['media', 'siswa', 'kelas'])
+            ->with(['media', 'siswa', 'kelas', 'kelas.jurusan'])
             ->when($request->name, function($q, $v){
                 $q->where('name', $v);
             });
@@ -33,6 +34,7 @@ class AbsensiController extends Controller
             'absensis' => $data->get(),
             'siswa' => Siswa::get(),
             'kelas' => Kelas::get(),
+            'jurusan' => Jurusan::get(),
             'query' => $request->input(),
             'permissions' => [
                 'canAdd' => $this->user->can("create absensi"),

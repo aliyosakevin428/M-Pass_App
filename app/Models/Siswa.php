@@ -56,4 +56,9 @@ class Siswa extends Model implements HasMedia
     {
         return $this->hasMany(Absensi::class);
     }
+
+    public function orangtua()
+    {
+        return $this->belongsTo(Orangtua::class);
+    }
 }
