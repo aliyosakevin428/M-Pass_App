@@ -73,6 +73,11 @@ export function AppSidebar() {
               href: route('absensi.index'),
               icon: BookCheck,
             },
+            {
+              title: 'Nilai',
+              href: route('laporanNilai.index'),
+              icon: BookCheck,
+            }
           ]}
           label="Data Master"
         />
