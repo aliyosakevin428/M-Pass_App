@@ -13,38 +13,39 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.81 0.1 252);
-  --chart-2: oklch(0.62 0.19 260);
-  --chart-3: oklch(0.55 0.22 263);
-  --chart-4: oklch(0.49 0.22 264);
-  --chart-5: oklch(0.42 0.18 266);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  /* Light theme - lembut dan netral */
+  --background: oklch(0.97 0.02 100); /* beige muda */
+  --foreground: oklch(0.25 0.02 100); /* abu gelap */
+  --card: oklch(0.95 0.015 100);
+  --card-foreground: oklch(0.3 0.02 100);
+  --popover: oklch(0.96 0.02 100);
+  --popover-foreground: oklch(0.25 0.02 100);
+  --primary: oklch(0.4 0.02 100); /* coklat muda */
+  --primary-foreground: oklch(0.98 0.005 100);
+  --secondary: oklch(0.9 0.015 100);
+  --secondary-foreground: oklch(0.3 0.02 100);
+  --muted: oklch(0.9 0.015 100);
+  --muted-foreground: oklch(0.5 0.02 100);
+  --accent: oklch(0.92 0.015 100);
+  --accent-foreground: oklch(0.25 0.02 100);
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.98 0.005 100);
+  --border: oklch(0.88 0.01 100);
+  --input: oklch(0.88 0.01 100);
+  --ring: oklch(0.7 0.01 100);
+  --chart-1: oklch(0.6 0.05 260);
+  --chart-2: oklch(0.5 0.08 262);
+  --chart-3: oklch(0.45 0.09 263);
+  --chart-4: oklch(0.4 0.08 265);
+  --chart-5: oklch(0.35 0.07 267);
+  --sidebar: oklch(0.95 0.015 100);
+  --sidebar-foreground: oklch(0.25 0.02 100);
+  --sidebar-primary: oklch(0.4 0.02 100);
+  --sidebar-primary-foreground: oklch(0.97 0.01 100);
+  --sidebar-accent: oklch(0.9 0.015 100);
+  --sidebar-accent-foreground: oklch(0.25 0.02 100);
+  --sidebar-border: oklch(0.88 0.01 100);
+  --sidebar-ring: oklch(0.7 0.01 100);
   --font-sans:
     ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -64,38 +65,39 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.269 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.371 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.275 0 0);
-  --input: oklch(0.325 0 0);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.81 0.1 252);
-  --chart-2: oklch(0.62 0.19 260);
-  --chart-3: oklch(0.55 0.22 263);
-  --chart-4: oklch(0.49 0.22 264);
-  --chart-5: oklch(0.42 0.18 266);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.275 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  /* Dark theme - versi gelap dari palet netral */
+  --background: oklch(0.22 0.015 100); /* abu gelap kecoklatan */
+  --foreground: oklch(0.95 0.01 100);
+  --card: oklch(0.28 0.015 100);
+  --card-foreground: oklch(0.95 0.01 100);
+  --popover: oklch(0.32 0.015 100);
+  --popover-foreground: oklch(0.95 0.01 100);
+  --primary: oklch(0.75 0.02 100);
+  --primary-foreground: oklch(0.22 0.015 100);
+  --secondary: oklch(0.3 0.015 100);
+  --secondary-foreground: oklch(0.92 0.01 100);
+  --muted: oklch(0.3 0.015 100);
+  --muted-foreground: oklch(0.7 0.01 100);
+  --accent: oklch(0.35 0.015 100);
+  --accent-foreground: oklch(0.95 0.01 100);
+  --destructive: oklch(0.6 0.2 25);
+  --destructive-foreground: oklch(0.97 0.005 100);
+  --border: oklch(0.33 0.01 100);
+  --input: oklch(0.38 0.01 100);
+  --ring: oklch(0.55 0.01 100);
+  --chart-1: oklch(0.7 0.05 260);
+  --chart-2: oklch(0.6 0.08 262);
+  --chart-3: oklch(0.55 0.09 263);
+  --chart-4: oklch(0.5 0.08 265);
+  --chart-5: oklch(0.45 0.07 267);
+  --sidebar: oklch(0.28 0.015 100);
+  --sidebar-foreground: oklch(0.95 0.01 100);
+  --sidebar-primary: oklch(0.6 0.02 100);
+  --sidebar-primary-foreground: oklch(0.22 0.015 100);
+  --sidebar-accent: oklch(0.32 0.015 100);
+  --sidebar-accent-foreground: oklch(0.95 0.01 100);
+  --sidebar-border: oklch(0.33 0.01 100);
+  --sidebar-ring: oklch(0.45 0.01 100);
   --font-sans:
     ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
