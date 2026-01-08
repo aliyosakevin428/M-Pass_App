@@ -30,5 +30,8 @@ class LaporanNilai extends Model
         'updated_at',
     ];
 
-    
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class);
+    }
 }

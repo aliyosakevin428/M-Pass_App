@@ -24,7 +24,7 @@ const LaporanNilaiDeleteDialog: FC<Props> = ({ children, laporan_nilai }) => {
   const [open, setOpen] = useState(false);
 
   const handleDelete = () => {
-    router.delete(route('laporan_nilai.destroy', laporan_nilai.id), {
+    router.delete(route('laporanNilai.destroy', laporan_nilai.id), {
       preserveScroll: true,
       onSuccess: () => {
         toast.success('LaporanNilai deleted successfully');

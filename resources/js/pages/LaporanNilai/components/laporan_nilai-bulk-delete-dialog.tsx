@@ -24,7 +24,7 @@ const LaporanNilaiBulkDeleteDialog: FC<Props> = ({ children, laporan_nilaiIds })
   const [open, setOpen] = useState(false);
 
   const handleDelete = () => {
-    router.delete(route('laporan_nilai.bulk.destroy'), {
+    router.delete(route('laporanNilai.bulk.destroy'), {
       data: { laporan_nilai_ids: laporan_nilaiIds },
       preserveScroll: true,
       onSuccess: () => {

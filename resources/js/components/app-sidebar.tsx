@@ -76,7 +76,7 @@ export function AppSidebar() {
             {
               title: 'Nilai',
               href: route('laporanNilai.index'),
-              icon: BookCheck,
+              icon: ScrollText,
             }
           ]}
           label="Data Master"

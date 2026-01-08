@@ -17,7 +17,7 @@ const LaporanNilaiBulkEditSheet: FC<Props> = ({ children, laporan_nilaiIds }) =>
   });
 
   const handleSubmit = () => {
-    put(route('laporan_nilai.bulk.update'), {
+    put(route('laporanNilai.bulk.update'), {
       preserveScroll: true,
       onSuccess: () => {
         toast.success('LaporanNilai updated successfully');
