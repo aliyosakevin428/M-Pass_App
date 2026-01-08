@@ -14,6 +14,8 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\OrangtuaController;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\LaporanNilaiController;
+
 
 
 
@@ -71,6 +73,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('absensi/{absensi}/force-delete', [AbsensiController::class, 'forceDelete'])->name('absensi.force-delete');
     Route::post('absensi/{absensi}/upload-media', [AbsensiController::class, 'uploadMedia'])->name('absensi.upload-media');
     Route::apiResource('absensi', AbsensiController::class);
+    Route::put('laporanNilai/bulk', [LaporanNilaiController::class, 'bulkUpdate'])->name('laporanNilai.bulk.update');
+    Route::delete('laporanNilai/bulk', [LaporanNilaiController::class, 'bulkDelete'])->name('laporanNilai.bulk.destroy');
+    Route::apiResource('laporanNilai', LaporanNilaiController::class);
 });
 
 require __DIR__.'/settings.php';
